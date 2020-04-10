@@ -1,0 +1,6 @@
+[submodule "ext/drogon"]
+	path = ext/drogon
+	url = https://github.com/an-tao/drogon.git
+[submodule "ext/googletest"]
+	path = ext/googletest
+	url = https://github.com/google/googletest.git
