@@ -24,7 +24,6 @@ public:
 	ADD_METHOD_TO(InfoCtrl::status, "/status", Get);
 	METHOD_LIST_END
 
-
 	virtual void
 	status(HttpRequestPtr const& req,
 		std::function<void (const HttpResponsePtr &)>&& 
