@@ -18,7 +18,8 @@ show_usage(string name)
     std::cerr << "Usage: " << name << " <option(s)> SOURCES"
               << "Options:\n"
               << "\t-h,--help\tShow this help message\n"
-              << "\t-n,--name HOSTNAME\tSpecify hostname"
+              << "\t-n,--name HOSTNAME\tSpecify hostname\n"
+              << "\t-m,--message MESSAGE\tSpecify message"
               << std::endl;
 }
 
@@ -30,15 +31,12 @@ get_hostname()
     return hostname;
 }
 
-
-}
-
-
-int
-main(int argc, const char *argv[])
+map<string, string>
+parse_argv(int argc, const char *argv[])
 {
-    
-    string hostname = get_hostname();
+    map<string, string> arguments;
+
+    arguments["hostname"] = get_hostname();
 
     if (argc > 1)
     {
@@ -49,25 +47,68 @@ main(int argc, const char *argv[])
             if ((arg == "-h") || (arg == "--help")) 
             {
                 show_usage(argv[0]);
-                return EXIT_SUCCESS;
+                arguments["help"]="true";
+                return arguments;
             }
             else if ((arg == "-n") || (arg == "--name")) 
             {
                 if (i + 1 < argc) 
                 {
                     // overwrite hostname 
-                    hostname = argv[++i];
+                    arguments["hostname"] = argv[++i];
                 }
                 else
                 {
-                    cerr << "--destination option requires one argument!" << endl;
-                    return EXIT_FAILURE;
+                    cerr << "--name option requires one argument!" << endl;
+                    arguments["error"] = "true";
+                    return arguments;
+                }
+            }
+            else if ((arg == "-m") || (arg == "--message")) 
+            {
+                if (i + 1 < argc) 
+                {
+                    // overwrite hostname 
+                    arguments["message"] = argv[++i];
+                }
+                else
+                {
+                    cerr << "--message option requires one argument!" << endl;
+                    arguments["error"] = "true";
+                    return arguments;
                 }
             }
         }
     }
 
-    auto info_ctrl = make_shared<InfoCtrl>(InfoCtrl());
+
+    if (arguments.count("message") == 0) 
+    {
+        arguments["message"] = "Hello world from " 
+                    + arguments["hostname"];
+    }
+
+    return arguments;
+}
+
+
+}
+
+
+int
+main(int argc, const char *argv[])
+{
+
+    auto args = parse_argv(argc, argv);
+
+    if (args.count("error"))
+        return EXIT_FAILURE;
+    
+    if (args.count("help"))
+        return EXIT_SUCCESS;
+        
+    auto info_ctrl = make_shared<InfoCtrl>(
+            InfoCtrl(args["message"]));
 
     app().registerController(info_ctrl);
 

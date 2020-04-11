@@ -9,7 +9,9 @@ InfoCtrl::status(HttpRequestPtr const& req,
    std::function<void (const HttpResponsePtr &)>&& callback)
 {
 
-    nl::json jstatus {{"status", "Hello world from "}};
+    nl::json jstatus {
+        {"message", _message}
+    };
 
     make_json_response(std::move(jstatus), 
                        std::move(callback));
