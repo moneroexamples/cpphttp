@@ -34,10 +34,10 @@ git clone --recurse-submodules https://github.com/moneroexamples/cpphttp
 docker build ./my-dev-repo/ -t "cpphttp"
 
 # run the container (without saving)
-docker run --rm  -ti -p 8080:8080 -name cpphttp cpphttp 
+docker run --rm  -ti -p 8080:8080 --name cpphttp cpphttp 
 
 # test the cpphttp
-curl -w '\n' localhost:8080/status
+curl -w '\n' localhost:8080
 
 # kill the container
 docker kill cpphttp
