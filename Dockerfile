@@ -9,7 +9,7 @@ RUN set -ex && \
     apt-get install -y \
          apt-utils git \
          g++ cmake libjsoncpp-dev \
-         uuid-dev zlib1g-dev && \
+         uuid-dev zlib1g-dev libssl-dev && \
     \
     apt-get clean -y  
 
