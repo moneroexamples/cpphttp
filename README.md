@@ -3,14 +3,14 @@
 Example setup and use of [drogon](https://github.com/an-tao/drogon) to provide json http rest server.
 
 
-### Project download and compilation
+### Project download and compilation on Ubuntu 18.04
 
 ```bash
 # go to home folder
 cd ~
 
 # drogon dependencies
-sudo apt install libjsoncpp-dev uuid-dev
+sudo apt install libjsoncpp-dev uuid-dev zlib1g-dev
 
 git clone --recurse-submodules https://github.com/moneroexamples/cpphttp
 
@@ -21,6 +21,26 @@ mkdir build && cd build
 cmake ..
 
 make
+```
+### Using docker
+
+```bash
+# go to home folder
+cd ~
+
+git clone --recurse-submodules https://github.com/moneroexamples/cpphttp
+
+# build cpphttp docker image
+docker build ./my-dev-repo/ -t "cpphttp"
+
+# run the container (without saving)
+docker run --rm  -ti -p 8080:8080 -name cpphttp cpphttp 
+
+# test the cpphttp
+curl -w '\n' localhost:8080/status
+
+# kill the container
+docker kill cpphttp
 ```
 
 ## How can you help
