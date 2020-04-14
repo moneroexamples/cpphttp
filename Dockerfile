@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN set -ex && \
     apt-get update && \
-    apt-get install --no-install-recommends -y \
+    apt-get install -y \
          apt-utils git \
          g++ cmake libjsoncpp-dev \
          uuid-dev zlib1g-dev && \
