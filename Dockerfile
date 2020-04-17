@@ -21,7 +21,7 @@ WORKDIR /cpphttp
 
 RUN set -ex && \
     git submodule init && git submodule update && \
-    mkdir build && cd build && \
+    mkdir -p  build && cd build && \
     cmake -D BUILD_TESTS=ON .. && \
     make -j 2 && \
     make tests

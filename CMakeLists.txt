@@ -12,10 +12,17 @@ list(APPEND CMAKE_MODULE_PATH
     "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 
+option(RANDOM_FAIL "Make unit tests fail at random" OFF)
+
+
 set(BUILD_ORM FALSE CACHE INTERNAL "")
 set(BUILD_CTL FALSE CACHE INTERNAL "")
 set(BUILD_EXAMPLES FALSE CACHE INTERNAL "")
 add_subdirectory(ext/drogon)
+
+if(RANDOM_FAIL)
+    add_compile_definitions(RANDOM_FAIL=1)
+endif()
 
 
 # this find will just give as interface target
@@ -32,7 +39,11 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE 
         ext/)
 
-target_link_libraries(${PROJECT_NAME}
+
+    #set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
+
+
+target_link_libraries(${PROJECT_NAME} 
     PRIVATE 
         Drogon::Drogon)
 
