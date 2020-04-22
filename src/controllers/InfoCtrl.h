@@ -26,7 +26,9 @@ public:
 	
     InfoCtrl() = default;
 
-	InfoCtrl(string message): _message {message} 
+	InfoCtrl(string message, bool random): 
+        _message {message},
+        _random {random}
     {};
 
 	virtual void
@@ -37,6 +39,7 @@ public:
 protected:
 
     string _message; 
+    bool _random; 
 
     virtual void 
     make_json_response(nl::json&& out_data,

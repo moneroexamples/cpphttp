@@ -1,5 +1,6 @@
 #include "InfoCtrl.h"
 
+#include <stdlib.h>
 
 namespace myapp
 {
@@ -9,8 +10,21 @@ InfoCtrl::status(HttpRequestPtr const& req,
    std::function<void (const HttpResponsePtr &)>&& callback)
 {
 
+
+    string msg_to_return = _message;
+
+
+    if (_random)
+    {
+        srand(time(NULL));
+
+        msg_to_return = rand() % 2 
+                        ? "wrong msg"s 
+                        : msg_to_return;
+    }
+
     nl::json jstatus {
-        {"message", _message}
+        {"message", msg_to_return}
     };
 
     make_json_response(std::move(jstatus), 

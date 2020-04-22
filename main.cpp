@@ -19,7 +19,8 @@ show_usage(string name)
               << "Options:\n"
               << "\t-h,--help\tShow this help message\n"
               << "\t-n,--name HOSTNAME\tSpecify hostname\n"
-              << "\t-m,--message MESSAGE\tSpecify message"
+              << "\t-m,--message MESSAGE\tSpecify message\n"
+              << "\t-r,--random\tRandom message\n"
               << std::endl;
 }
 
@@ -78,9 +79,13 @@ parse_argv(int argc, const char *argv[])
                     return arguments;
                 }
             }
+            else if ((arg == "-r") || (arg == "--random")) 
+            {
+                arguments["random"] = "true";
+                cout << "---Can return wrong message---" << endl;
+            }
         }
     }
-
 
     if (arguments.count("message") == 0) 
     {
@@ -106,9 +111,12 @@ main(int argc, const char *argv[])
     
     if (args.count("help"))
         return EXIT_SUCCESS;
+
+    bool random_message = args.count("random") > 0;
         
     auto info_ctrl = make_shared<InfoCtrl>(
-            InfoCtrl(args["message"]));
+            InfoCtrl(args["message"], 
+                     random_message));
 
     app().registerController(info_ctrl);
 
