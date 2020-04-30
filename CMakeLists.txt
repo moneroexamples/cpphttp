@@ -18,7 +18,11 @@ option(RANDOM_FAIL "Make unit tests fail at random" OFF)
 set(BUILD_ORM FALSE CACHE INTERNAL "")
 set(BUILD_CTL FALSE CACHE INTERNAL "")
 set(BUILD_EXAMPLES FALSE CACHE INTERNAL "")
+
+set(JSONCPP_WITH_TESTS OFF CACHE INTERNAL "")
+
 add_subdirectory(ext/drogon)
+add_subdirectory(ext/jsoncpp)
 
 if(RANDOM_FAIL)
     add_compile_definitions(RANDOM_FAIL=1)

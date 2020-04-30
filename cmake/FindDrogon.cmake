@@ -8,7 +8,7 @@ message(STATUS "Searching for Drogon")
 
 add_library(Drogon::Drogon 
         INTERFACE IMPORTED GLOBAL)
-find_package (Jsoncpp REQUIRED)
+    #find_package (Jsoncpp REQUIRED)
 
 set_target_properties(Drogon::Drogon PROPERTIES
       INTERFACE_INCLUDE_DIRECTORIES 
