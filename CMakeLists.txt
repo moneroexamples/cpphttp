@@ -21,8 +21,14 @@ set(BUILD_EXAMPLES FALSE CACHE INTERNAL "")
 
 set(JSONCPP_WITH_TESTS OFF CACHE INTERNAL "")
 
-add_subdirectory(ext/drogon)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR} CACHE PATH "" FORCE)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+
+
+
 add_subdirectory(ext/jsoncpp)
+add_subdirectory(ext/drogon)
 
 if(RANDOM_FAIL)
     add_compile_definitions(RANDOM_FAIL=1)
