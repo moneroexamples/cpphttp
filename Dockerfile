@@ -20,6 +20,7 @@ COPY . /cpphttp
 WORKDIR /cpphttp
 
 RUN set -ex && \
+    ./scripts/initsubmodules.sh && \
     git submodule init && git submodule update && \
     mkdir -p  build && cd build && \
     cmake -D BUILD_TESTS=ON .. && \
