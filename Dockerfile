@@ -24,11 +24,11 @@ RUN set -ex && \
     git submodule init && git submodule update && \
     mkdir -p  build && cd build && \
     cmake -D BUILD_TESTS=ON .. && \
-    make -j 2 && \
+    make -j 1 && \
     make tests
 
 EXPOSE 8080
 
 WORKDIR /cpphttp/build
 
-ENTRYPOINT ["./cpphttp"]
+CMD ["./cpphttp"]
