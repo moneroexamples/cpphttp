@@ -3,12 +3,13 @@ FROM ubuntu:18.04
 # Install dependencies
 
 ARG DEBIAN_FRONTEND=noninteractive
+         #g++ cmake libjsoncpp-dev \
 
 RUN set -ex && \
     apt-get update && \
     apt-get install -y \
          apt-utils git \
-         g++ cmake libjsoncpp-dev \
+         g++ cmake  \
          uuid-dev zlib1g-dev libssl-dev && \
     \
     apt-get clean -y  

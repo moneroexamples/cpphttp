@@ -47,8 +47,7 @@ add_executable(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME}
     PRIVATE 
-        ext/)
-
+        ext)
 
     #set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 
