@@ -12,6 +12,9 @@ cd ~
 # drogon dependencies
 sudo apt install libjsoncpp-dev uuid-dev zlib1g-dev
 
+# for Mac OS X using brew
+brew install ossp-uuid jsoncpp zlib
+
 git clone --recurse-submodules https://github.com/moneroexamples/cpphttp
 
 cd cpphttp
