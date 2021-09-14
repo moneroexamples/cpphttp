@@ -13,6 +13,9 @@ RUN set -ex && \
     \
     apt-get clean -y  
 
+RUN ln -s /usr/include/jsoncpp/json/ /usr/include/json && \
+    ln -s /usr/lib/x86_64-linux-gnu/libjsoncpp.so /usr/lib/libJsoncpp_lib.so  
+
 RUN mkdir -p /cpphttp
 
 COPY . /cpphttp
